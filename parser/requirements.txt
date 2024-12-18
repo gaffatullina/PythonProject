@@ -1,0 +1,5 @@
+beautifulsoup4
+requests
+Psycopg2-binary
+sockets
+python-dotenv

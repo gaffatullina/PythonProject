@@ -1,0 +1,4 @@
+pyTelegramBotAPI
+urllib3
+python-dotenv
+Psycopg2-binary

@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  database:
+    container_name: database
+    restart: always
+    user: postgres
+    image:
+      postgres:latest
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres-data:/var/lib/postgresql/data
+      - ./database/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./database/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+    networks:
+      - app_networks
+  
+  parser:
+    build: ./parser
+    depends_on:
+      - database
+    networks:
+      - app_networks
+    links:
+      - "database:database"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      USER_AGENT: ${USER_AGENT}
+
+  bot:
+    build: ./bot
+    depends_on:
+      - database
+    environment:
+      TOKEN: ${TOKEN}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - app_networks
+    links:
+      - "database:database"
+
+volumes:
+  postgres-data:
+    driver: local
+
+networks:
+  app_networks:
+
