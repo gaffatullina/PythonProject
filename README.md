@@ -34,6 +34,6 @@ Replace the placeholder values with your own credentials.
 ## 🛠️ How to Run
 To launch the bot, simply execute the following command in the project directory:
 ```bash
-bash ./build.sh
+chmod +x ./build.sh
 ```
 
