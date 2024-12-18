@@ -37,3 +37,5 @@ To launch the bot, simply execute the following command in the project directory
 chmod +x ./build.sh
 ```
 
+Before starting, make sure to stop any local **PostgreSQL** service running on your machine. Leaving it active might cause port conflicts with Docker.
+
