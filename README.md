@@ -1,12 +1,15 @@
 # PythonProject
 
-Для копирования проекта используйте следующие команды 
+Описание проекта: 
+Бот для Telegram помогает рассчитать стоимость услуг салона красоты MAMMAMIA
+
+Для копирования проекта используйте следующие команды:
 
 git clone git@github.com:gaffatullina/PythonProject.git
 
 cd PythonProject
 
-Создайте файл .env c содержанием
+Создайте файл .env c содержанием:
 
 POSTGRES_DB=your_postgres_database
 
@@ -18,7 +21,7 @@ USER_AGENT= 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
 
 TOKEN="ADD HERE YOUR BOT TOKEN"
 
-Для запуска работы бота используйте команду
+Для запуска работы бота используйте команду:
 
 bash ./build.sh
 
